@@ -1,0 +1,14 @@
+
+.pagecontainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.topBanner{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 150px;
+    background: linear-gradient(290deg, rgb(255,255,255), rgb(230,230,230));
+}
