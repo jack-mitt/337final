@@ -1,0 +1,10 @@
+Elan:
+[] Home page front end
+[] account registration / login
+
+
+
+
+Jack:
+[] posting a post
+[] post page
