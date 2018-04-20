@@ -8,6 +8,18 @@
 <body>
     <div id='pagecontainer'>
     
+    <div class='content' id='content'>
+        <div class='sidebar' id='sidebar'>
+            <?php
+                getSideBar();
+            ?>
+        </div>
+        <div class='frontpage' id='frontpage'>
+            <?php
+                getFrontPage();
+            ?>
+        </div>
+    </div>
     </div>
     <script>
     getTopBanner();

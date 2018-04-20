@@ -16,6 +16,14 @@ body{
     flex-direction: column;
 }
 
+.content{
+    width: 100%;
+    height: auto;
+    background: linear-gradient(290deg, #eee, #999);
+    position: absolute;
+    top: 150px;
+}
+
 .topBanner{
     position: absolute;
     display: flex;
@@ -41,5 +49,7 @@ div.bannerTitle{
 }
 
 div.navigationButtons{
-    width: 
+    width: 40%;
 }
+
+div.accountButtons
