@@ -22,6 +22,7 @@ body{
     background: linear-gradient(290deg, #eee, #999);
     position: absolute;
     top: 150px;
+    padding-left: 50px;
 }
 
 .topBanner{
@@ -38,7 +39,7 @@ body{
 
 img.topBannerLogo{
     width: 10%;
-    flex-shrink: 1; 
+    flex-shrink: 1;
     object-fit: scale-down;
     margin: 25px;
 }
@@ -53,3 +54,10 @@ div.navigationButtons{
 }
 
 div.accountButtons
+
+
+
+input[type=text]{
+  margin-left: 100px;
+
+}
