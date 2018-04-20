@@ -2,7 +2,7 @@
 class DatabaseAdaptor {
     private $DB;    
     public function __construct() {
-        $db = 'mysql:dbname=azcraig; host=127.0.0.1; charset=utf8';
+        $db = 'mysql:dbname=az_craig; host=127.0.0.1; charset=utf8';
         $user = 'root';
         $password = ''; // an empty string
         try {
@@ -15,15 +15,21 @@ class DatabaseAdaptor {
     }
     
     public function getAllCategories() {
-        $stmt = $this->DB->prepare("")
+        $stmt = $this->DB->prepare("SELECT * FROM categories");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
     public function getAllPosts(){
-        
+        $stmt = $this->DB->prepare("SELECT * FROM posts");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);       
     }
     
-    public function getPostsByCategory(){
-        
+    public function getPostsByCategory($categoryId){
+        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE category_id='" .$categoryId ."'");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);          
     }
     
 
