@@ -11,26 +11,36 @@ function getPostPage(){
   var postTitle = document.createElement('input');
   postTitle.id = 'post_title';
   postTitle.className = 'inputfield';
+  postTitle.name = 'title';
 
   var postDesc = document.createElement('textarea');
   postDesc.className = 'inputfield';
+  postDesc.rows = '8';
+  postDesc.cols = '100';
+  postDesc.name = 'desc';
 
   var addImageButton = document.createElement('button');
   addImageButton.value = 'Add Imamge';
   addImageButton.className = 'defbutton';
   addImageButton.innerHTML = 'Add Image';
 
-  var submitButton = document.createElement('button');
+  var submitButton = document.createElement('input');
   submitButton.value = 'Create';
   submitButton.className = 'defbutton';
-  submitButton.innerHTML = 'Create';
-  var title = postTitle.value;
-  var desc = postDesc.value;
+  submitButton.type = "submit";
+
   //CODE FOR IMAGE NEEDS TO BE ADDED
-  submitButton.onclick = 'createListing(title, desc)';
+
+  var imgNameDiv = document.createElement('div');
+  imgName = imgNameDiv.innerHTML;
+
+  var mainForm = document.createElement('form');
+  mainForm.action = "controller.php";
+  mainForm.method = "POST";
 
   page.appendChild(mainDiv);
   mainDiv.appendChild(heading);
+  mainDiv.appendChild(mainForm);
   mainDiv.innerHTML += 'Title: ';
   mainDiv.innerHTML += '<br>';
   mainDiv.appendChild(postTitle);
@@ -40,6 +50,13 @@ function getPostPage(){
   mainDiv.appendChild(postDesc);
   mainDiv.innerHTML += '<br><br>';
   mainDiv.appendChild(addImageButton);
+  mainDiv.innerHTML += '<br>';
   mainDiv.appendChild(submitButton);
 
 }
+/*
+function createListing(title, desc){
+  var ajax = new XMLHttpRequest();
+  ajax.open("POST", "controller.php?mode=createlisting&title=" + title + "&desc=" + desc, true);
+  ajax.send();
+}*/
