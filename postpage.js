@@ -50,6 +50,17 @@ function getPostPage(){
     cDrop.appendChild(aux);
   }
 
+  var location = document.createElement('input');
+  location.className = 'inputfield';
+  location.name = 'location';
+  location.id = 'location';
+
+  var price = document.createElement('input');
+  price.type = 'number';
+  price.id = 'price';
+  price.name = 'price';
+
+
   page.appendChild(mainDiv);
   mainDiv.appendChild(heading);
   mainDiv.appendChild(mainForm);
@@ -58,6 +69,14 @@ function getPostPage(){
   mainForm.innerHTML += 'Title: ';
   mainForm.innerHTML += '<br>';
   mainForm.appendChild(postTitle);
+  mainForm.innerHTML += '<br><br>';
+  mainForm.innerHTML += 'Location: ';
+  mainForm.innerHTML += '<br>';
+  mainForm.appendChild(location);
+  mainForm.innerHTML += '<br><br>';
+  mainForm.innerHTML += 'Price: ';
+  mainForm.innerHTML += '<br>';
+  mainForm.appendChild(price);
   mainForm.innerHTML += '<br><br>';
   mainForm.innerHTML += "Description: ";
   mainForm.innerHTML += '<br>';
