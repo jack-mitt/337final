@@ -1,4 +1,7 @@
+
 function getPostPage(){
+  var categories = ["Jobs", "Services", "Cars", "School Supplies", "Pets", "Electronics"];
+
   var page = document.getElementById('pagecontainer');
 
   var mainDiv = document.createElement('div');
@@ -38,20 +41,31 @@ function getPostPage(){
   mainForm.action = "controller.php";
   mainForm.method = "POST";
 
+  var cDrop = document.createElement('select');
+  cDrop.name = 'category';
+  for (var i = 0; i < categories.length; i++){
+    var aux = document.createElement('option');
+    aux.innerHTML = categories[i];
+    aux.value = categories[i];
+    cDrop.appendChild(aux);
+  }
+
   page.appendChild(mainDiv);
   mainDiv.appendChild(heading);
   mainDiv.appendChild(mainForm);
-  mainDiv.innerHTML += 'Title: ';
-  mainDiv.innerHTML += '<br>';
-  mainDiv.appendChild(postTitle);
-  mainDiv.innerHTML += '<br><br>';
-  mainDiv.innerHTML += "Description: ";
-  mainDiv.innerHTML += '<br>';
-  mainDiv.appendChild(postDesc);
-  mainDiv.innerHTML += '<br><br>';
-  mainDiv.appendChild(addImageButton);
-  mainDiv.innerHTML += '<br>';
-  mainDiv.appendChild(submitButton);
+  mainForm.appendChild(cDrop);
+  mainForm.innerHTML += "<br><br>";
+  mainForm.innerHTML += 'Title: ';
+  mainForm.innerHTML += '<br>';
+  mainForm.appendChild(postTitle);
+  mainForm.innerHTML += '<br><br>';
+  mainForm.innerHTML += "Description: ";
+  mainForm.innerHTML += '<br>';
+  mainForm.appendChild(postDesc);
+  mainForm.innerHTML += '<br><br>';
+  mainForm.appendChild(addImageButton);
+  mainForm.innerHTML += '<br>';
+  mainForm.appendChild(submitButton);
 
 }
 /*
