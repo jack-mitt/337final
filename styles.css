@@ -59,10 +59,14 @@ div.accountButtons
 
 input[type=text]{
   margin-left: 100px;
-
 }
 
 #post_title{
+  width : 500px;
+  height: 20px;
+}
+
+#location{
   width : 500px;
   height: 20px;
 }
