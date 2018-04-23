@@ -1,6 +1,6 @@
 <?php
 class DatabaseAdaptor {
-    private $DB;    
+    private $DB;
     public function __construct() {
         $db = 'mysql:dbname=az_craig; host=127.0.0.1; charset=utf8';
         $user = 'root';
@@ -13,28 +13,34 @@ class DatabaseAdaptor {
           exit ();
         }
     }
-    
+
     public function getAllCategories() {
         $stmt = $this->DB->prepare("SELECT * FROM categories");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getAllPosts(){
         $stmt = $this->DB->prepare("SELECT * FROM posts");
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);       
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getPostsByCategory($categoryId){
         $stmt = $this->DB->prepare("SELECT * FROM posts WHERE category_id='" .$categoryId ."'");
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);          
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
+    public function createListing($categoryID, $title, $desc, $location, $price){
+      //needs code for user ID
+      $stmt = $this->DB->prepare("INSERT INTO posts (name, description, location, price, category_id)
+       VALUES (" . $title . ", " . $desc . ", " . $location . ", " . $price . ", " . $categoryID . ")");
+      $stmt->execute(); 
+      header('Location: index.php');
+    }
 
 
 } // End class DatabaseAdaptor
 
 ?>
-
