@@ -25,7 +25,7 @@ body{
     padding-left: 50px;
 }
 
-.topBanner{
+.topbanner{
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -34,11 +34,21 @@ body{
     left: 0px;
     right: 0px;
     height: 150px;
-    background: linear-gradient(290deg,#002e7a,#001d4c);
+    background-color: whitesmoke;
+    box-shadow: 0px 4px 4px gray;
+    z-index: 1;
+
 }
 
-img.topBannerLogo{
-    width: 10%;
+.topbannertitle{
+    font-family: "Tajawal", sans-serif;
+    height: 100%;
+    font-size: 40px;
+    line-height: 150px;
+}
+
+img.topbannerlogo{
+    height: 60%;
     flex-shrink: 1;
     object-fit: scale-down;
     margin: 25px;
@@ -69,4 +79,24 @@ input[type=text]{
 #location{
   width : 500px;
   height: 20px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }

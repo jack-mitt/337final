@@ -6,7 +6,7 @@
     }
 
     function getFrontPage(){
-        $frontPageStr = '';
+        $frontPageStr = "<h2 class='frontpageheader'>Featured Items</h2>";
         $DB = new DatabaseAdaptor;
         $allCategories = $DB->getAllCategories();
         $categoryCount = count($allCategories);
@@ -19,6 +19,7 @@
         }
         foreach($featuredCategories as $category){
             $categoryName = str_replace("_", " ", $category['name']);
+            $categoryName = strtoupper($categoryName);
             $frontPageStr .= "<div class='featuredcategory' id='" . $category['name'] . "'>";
             $frontPageStr .= "<h3 class='featuredheader'>" . $categoryName . "</h3>";
             // INNER DIVS

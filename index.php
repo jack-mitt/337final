@@ -4,6 +4,9 @@
 <title>UACraig</title>
 <script src='script.js'></script>
 <link rel='stylesheet' href='styles.css'>
+<link rel='stylesheet' href='indexstyles.css'>
+<link href="https://fonts.googleapis.com/css?family=Raleway:200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Tajawal:200" rel="stylesheet">
 </head>
 <body>
     <div id='pagecontainer'>
