@@ -11,6 +11,7 @@
     <div class='content' id='content'>
         <div class='sidebar' id='sidebar'>
             <?php
+                include('controller.php');
                 getSideBar();
             ?>
         </div>

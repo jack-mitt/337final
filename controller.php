@@ -17,16 +17,17 @@
                 array_push($featuredCategories, $allCategories[$randIndex]);
             }
         }
-        foreach($allCategories as $category){
+        foreach($featuredCategories as $category){
             $categoryName = str_replace("_", " ", $category['name']);
             $frontPageStr .= "<div class='featuredcategory' id='" . $category['name'] . "'>";
             $frontPageStr .= "<h3 class='featuredheader'>" . $categoryName . "</h3>";
-            for($i = 0; $i < 3; $i++){
-                $
-            }
+            // INNER DIVS
+            //for($i = 0; $i < 3; $i++){
+              //  $
+            //}
+            $frontPageStr .= "</div>";
         }
-
-        
+        echo $frontPageStr;      
     }
 $categories = array(
   "Jobs"=>0,
