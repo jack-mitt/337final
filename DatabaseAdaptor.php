@@ -27,7 +27,7 @@ class DatabaseAdaptor {
     }
 
     public function getPostsByCategory($categoryId){
-        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE category_id='" .$categoryId ."'");
+        $stmt = $this->DB->prepare("SELECT posts.name, posts.price FROM posts JOIN categories WHERE category_id='" .$categoryId ."'");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
