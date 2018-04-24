@@ -1,10 +1,12 @@
 Elan:
-[] Home page front end
+[x] Home page front end
 [] account registration / login
-
-
+[] side bar
+[] adding an image
 
 
 Jack:
-[] posting a post
-[] post page
+[x] posting a post
+[x] post page
+[] search page
+
