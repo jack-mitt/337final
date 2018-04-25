@@ -43,7 +43,7 @@
             //}
             $frontPageStr .= "</div>";
         }
-        echo $frontPageStr;      
+        echo $frontPageStr;
     }
 
 $categories = array(
@@ -53,8 +53,6 @@ $categories = array(
   "School Supplies"=>3,
   "Pets"=>4,
   "Electronics"=>5
-
-
 );
 $DB = new DatabaseAdaptor;
 if(isset($_POST['title'])){

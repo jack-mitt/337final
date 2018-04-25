@@ -41,8 +41,8 @@ class DatabaseAdaptor {
     public function createListing($categoryID, $title, $desc, $location, $price){
       //needs code for user ID
       $stmt = $this->DB->prepare("INSERT INTO posts (name, description, location, price, category_id)
-       VALUES (" . $title . ", " . $desc . ", " . $location . ", " . $price . ", " . $categoryID . ")");
-      $stmt->execute(); 
+       VALUES ('" . $title . "', '" . $desc . "', '" . $location . "', '" . $price . "', '" . $categoryID . "')");
+      $stmt->execute();
       header('Location: index.php');
     }
 
