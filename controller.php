@@ -2,12 +2,27 @@
     include('DatabaseAdaptor.php');
 
     function getSideBar(){
-
+        $sidebarStr = "<h3 class='sidebarheader'>CATEGORIES</h3>";
+        $DB = new DatabaseAdaptor();
+        $allCategories = $DB->getAllCategories();
+        $categoryCount = count($allCategories);
+        foreach($allCategories as $category){
+            if($category['parent_id'] == NULL){
+                $sidebarStr .= "<a class='category' href='browse.php?category=" . $category['name'] . "'>" . strtoupper($category['name']) . "</a>";
+                $catId = $category['id'];
+                $subcategories = $DB->getChildrenOf($catId);
+                foreach($subcategories as $subcat){
+                    $sidebarStr .= "<a class='subcategory' href='browse.php?category=" . $subcat['name'] . "'> • " . strtoupper($subcat['name']) . "</a>";
+                }
+                $sidebarStr .= "<br>";
+            }
+        }
+        echo $sidebarStr;
     }
 
     function getFrontPage(){
-        $frontPageStr = "<h2 class='frontpageheader'>Featured Items</h2>";
-        $DB = new DatabaseAdaptor;
+        $frontPageStr = "<h2 class='frontpageheader'>FEATURED ITEMS</h2>";
+        $DB = new DatabaseAdaptor();
         $allCategories = $DB->getAllCategories();
         $categoryCount = count($allCategories);
         $featuredCategories = array();
@@ -30,6 +45,7 @@
         }
         echo $frontPageStr;      
     }
+
 $categories = array(
   "Jobs"=>0,
   "Services"=>1,
