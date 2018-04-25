@@ -1,7 +1,7 @@
 Elan:
 [x] Home page front end
 [] account registration / login
-[] side bar
+[X] side bar
 [] adding an image
 
 
