@@ -1,6 +1,10 @@
 body{
     background-color: whitesmoke;
 }
+.content{
+    display: flex;
+    flex-direction: row;
+}
 
 .frontpage{
     position: absolute;
@@ -38,13 +42,9 @@ h2.frontpageheader{
 }
 
 .sidebar{
-    position: fixed;
-    background-color: darkred;
-    top:0px;
-    left: 0px;
+    background-color: lightgray;
     width: 200px;
-    bottom: 0px;
-    z-index: 0;
+    height: 100%;
 }
 
 h3.featuredheader{

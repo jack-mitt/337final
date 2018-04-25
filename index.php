@@ -10,7 +10,9 @@
 </head>
 <body>
     <div id='pagecontainer'>
-    
+    <script>
+    getTopBanner();
+    </script>    
     <div class='content' id='content'>
         <div class='sidebar' id='sidebar'>
             <?php
@@ -25,8 +27,6 @@
         </div>
     </div>
     </div>
-    <script>
-    getTopBanner();
-    </script>
+
 </body>
 </html>
