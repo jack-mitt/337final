@@ -40,6 +40,7 @@ function getPostPage(){
   var mainForm = document.createElement('form');
   mainForm.action = "controller.php";
   mainForm.method = "POST";
+  mainForm.id = 'addlistform';
 
   var cDrop = document.createElement('select');
   cDrop.name = 'category';
