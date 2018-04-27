@@ -43,13 +43,32 @@ function getPostPage(){
 
   var cDrop = document.createElement('select');
   cDrop.name = 'category';
-  for (var i = 0; i < categories.length; i++){
-    var aux = document.createElement('option');
-    aux.innerHTML = categories[i];
-    aux.value = categories[i];
-    cDrop.appendChild(aux);
-  }
+  cDrop.id = 'catas';
+  populateCategories();
 
+  function populateCategories(){
+
+    $.ajax({
+          url: 'controller.php?request=getCategories',
+          type: 'get',
+          //contentType: 'array',
+          //dataType: 'array',
+          cache: false,
+          success: function(data, status) {
+            var cDrop = document.getElementById('catas');
+            //console.log(data);
+            data = JSON.parse(data);
+            for (var i = 0; i < data.length; i++){
+              //console.log(cDrop.name);
+              var aux = document.createElement('option');
+              aux.text = data[i]['name'];
+              aux.value = data[i]['name'];
+              console.log(aux.value);
+              cDrop.add(aux);
+            }
+        }
+      });
+}
   var location = document.createElement('input');
   location.className = 'inputfield';
   location.name = 'location';

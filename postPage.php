@@ -5,6 +5,9 @@
 <script src='script.js'></script>
 <script src='postpage.js'></script>
 <link rel='stylesheet' href='styles.css'>
+<link href="https://fonts.googleapis.com/css?family=Raleway:200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Tajawal:200" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <div id='pagecontainer'>

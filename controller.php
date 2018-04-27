@@ -38,13 +38,14 @@
             $frontPageStr .= "<div class='featuredcategory' id='" . $category['name'] . "'>";
             $frontPageStr .= "<h3 class='featuredheader'>" . $categoryName . "</h3>";
             // INNER DIVS
-            //for($i = 0; $i < 3; $i++){
+            //for($i = 0; $i < 3; $i+){
               //  $
             //}
             $frontPageStr .= "</div>";
         }
         echo $frontPageStr;
     }
+
 
 $categories = array(
   "Jobs"=>0,
@@ -58,5 +59,11 @@ $DB = new DatabaseAdaptor;
 if(isset($_POST['title'])){
   //needs code for user ID
   $DB->createListing($categories[$_POST['category']], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price']);
+}
+
+if(isset($_GET['request'])){
+  if ($_GET['request'] == 'getCategories'){
+    echo json_encode($DB->getAllCategories());
+  }
 }
 ?>
