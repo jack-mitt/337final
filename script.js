@@ -44,4 +44,10 @@ function getTopBanner(){
     topBanner.appendChild(userDiv);
     
     page.appendChild(topBanner);
+    
+    getSessionInfo();
+}
+
+function getSessionInfo(){
+    console.log("getting session info");
 }
