@@ -1,5 +1,8 @@
 <?php
     include('DatabaseAdaptor.php');
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
 
     function getSideBar(){
         $sidebarStr = "<h3 class='sidebarheader'>CATEGORIES</h3>";
@@ -46,6 +49,7 @@
         echo $frontPageStr;
     }
 
+    //returns username if user logged in, else, returns null
     function getLoginStatus(){
         if(isset($_SESSION['username'])){
             return $_SESSION['username'];
@@ -55,6 +59,7 @@
         }
     }
 
+
 $categories = array(
   "Jobs"=>0,
   "Services"=>1,
@@ -63,11 +68,10 @@ $categories = array(
   "Pets"=>4,
   "Electronics"=>5
 );
-
+$DB = new DatabaseAdaptor;
 if(isset($_POST['title'])){
   //needs code for user ID
-    $DB = new DatabaseAdaptor;
-    $DB->createListing($categories[$_POST['category']], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price']);
+  $DB->createListing($categories[$_POST['category']], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price']);
 }
 
 if(isset($_GET['request'])){
@@ -77,10 +81,5 @@ if(isset($_GET['request'])){
   if ($_GET['request'] == 'loginInfo'){
     echo getLoginStatus();
   }
-}
-
-if(isset($_GET['search'])){
-  //echo $_GET['search'];
-  echo json_encode($DB->findSearch($_GET['search'], $_GET['catagory']));
 }
 ?>
