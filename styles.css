@@ -207,15 +207,40 @@ a.subcategory{
 }
 
 #searchHeader{
-  margin : 100px;
-
+  padding-top: 50px;
+  padding-left:50px;
+  display : block;
+  position: fixed;
+  top:150px;
+  right:0px;
+  left:0px;
+  height : 175px;
+  font-size: 20px;
 }
 
 #searchbar{
-  width : 200%;
   height : 20px;
+  width : 30%;
+  display: inline-block;
 }
 
 #searchButton{
   width : 70px;
+  padding : 10px;
+}
+
+/* class for dropdown and search button on search page */
+.dropandsearch{
+  margin : 10px;
+  height : 30px;
+}
+
+/* for the list of posts on search page */
+#postDiv{
+  margin-left: 50px;
+  margin-right:40px;
+  position: fixed;
+  top : 325px;
+  right:0px;
+  left:0px;
 }

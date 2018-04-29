@@ -5,7 +5,7 @@ function getSearchPage(){
   var mainDiv = document.createElement('div');
   mainDiv.className = 'content';
   page.appendChild(mainDiv);
-
+  mainDiv.id = 'mainDiv';
   var headDiv = document.createElement('div');
   headDiv.id = 'searchHeader';
   mainDiv.appendChild(headDiv);
@@ -17,6 +17,7 @@ function getSearchPage(){
   var cDrop = document.createElement('select');
   cDrop.name = 'category';
   cDrop.id = 'catas';
+  cDrop.className = 'dropandsearch';
   populateCategories();
 
   function populateCategories(){
@@ -42,9 +43,13 @@ function getSearchPage(){
       });
     }
 
+  var postDiv = document.createElement('div');
+  postDiv.id = 'postDiv';
+
   var searchButton = document.createElement('button');
   searchButton.innerHTML = 'Search';
   searchButton.id = 'searchbutton';
+  searchButton.className = 'dropandsearch';
   searchButton.onclick = function(){
     var search = document.getElementById('searchbar').value;
     var catagory = document.getElementById('catas');
@@ -56,17 +61,16 @@ function getSearchPage(){
       cache: false,
       success: function(data, status){
         //show listing names and prices
-        var content = document.getElementById('mainDiv');
+        var content = document.getElementById('postDiv');
         data = JSON.parse(data);
         console.log(data);
-
         for (var i = 0; i < data.length; i++){
           var aux = document.createElement('div');
           aux.innerHTML += '<hr>';
           aux.innerHTML += data[i]['name'];
           aux.innerHTML += '<br><br>';
           aux.innerHTML += data[i]['location'] + '              ' + data[i]['price'];
-          content.add(aux);
+          content.appendChild(aux);
         }
       }
 
@@ -74,12 +78,13 @@ function getSearchPage(){
   }
 
 
-  headDiv.innerHTML += '<b>Find:</b>  ';
+  mainDiv.appendChild(headDiv);
+  headDiv.innerHTML += '<b>Find:    </b>';
   headDiv.appendChild(searchBar);
-  headDiv.innerHTML += '<br><br>';
+  //headDiv.innerHTML += '<br><br>';
   headDiv.appendChild(cDrop);
-  headDiv.innerHTML += '<br><br>';
+  //headDiv.innerHTML += '<br><br>';
   headDiv.appendChild(searchButton);
-
+  mainDiv.appendChild(postDiv);
 
 }

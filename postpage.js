@@ -45,6 +45,7 @@ function getPostPage(){
   var cDrop = document.createElement('select');
   cDrop.name = 'category';
   cDrop.id = 'catas';
+  cDrop.classname = ''
   populateCategories();
 
   function populateCategories(){
