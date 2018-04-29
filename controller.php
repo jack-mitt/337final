@@ -66,4 +66,9 @@ if(isset($_GET['request'])){
     echo json_encode($DB->getAllCategories());
   }
 }
+
+if(isset($_GET['search'])){
+  //echo $_GET['search'];
+  echo json_encode($DB->findSearch($_GET['search'], $_GET['catagory']));
+}
 ?>

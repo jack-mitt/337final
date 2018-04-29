@@ -50,17 +50,24 @@ function getSearchPage(){
     var catagory = document.getElementById('catas');
     catagory = catagory.options[catagory.selectedIndex].value;
     //catagory = catagory.value;
-    alert(catagory);
     $.ajax({
-      url : 'controller.php?search='+search +'&catagory=' + catagory,
+      url : 'controller.php?search='+ search + '&catagory=' + catagory,
       type: 'get',
       cache: false,
       success: function(data, status){
         //show listing names and prices
         var content = document.getElementById('mainDiv');
-        var aux = document.createElement('div');
-        aux.innerHTML += '<h1>test</h1>';
-        content.add(aux);
+        data = JSON.parse(data);
+        console.log(data);
+
+        for (var i = 0; i < data.length; i++){
+          var aux = document.createElement('div');
+          aux.innerHTML += '<hr>';
+          aux.innerHTML += data[i]['name'];
+          aux.innerHTML += '<br><br>';
+          aux.innerHTML += data[i]['location'] + '              ' + data[i]['price'];
+          content.add(aux);
+        }
       }
 
     })

@@ -45,6 +45,14 @@ class DatabaseAdaptor {
       header('Location: index.php');
     }
 
+    public function findSearch($search, $catagory_id){
+      //echo 'here';
+      $stmt = $this->DB->prepare("SELECT * FROM posts WHERE posts.name LIKE '%" . $search . "%'");
+      //AND posts.category_id = " . $category_id);
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 } // End class DatabaseAdaptor
 
