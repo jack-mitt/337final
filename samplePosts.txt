@@ -1,0 +1,30 @@
+INSERT INTO posts (name, description, location, price, category_id)
+VALUES ('N64 MINT CONDISH', 'This is an OG N64 runs like a beaut. I can stress how much I love this thing.
+I have slept with it in my bed many times and sometimes even talk to it, so I need a new owner to treat it with
+just as much respect. For example i typically take it out to dinner once a week so that is a good start.
+I need to part ways because I need to pay for a mistake I made one night when I was drunk. Apparently
+jumping the bar and mixing your own drinks to show a girl youre a mix master is frowned upon.',
+'Central Tucson', $60, 1);
+
+
+INSERT INTO posts (name, description, location, price, category_id)
+VALUES ('Ancient japanese ottoman', 'This bad boy was estimated to be worth 10 grand
+on antiques road show but im out here selling it for 2. Im not gonna lie I stole it from
+my grandma who was given it to her by her husband who died in the gulf war. I honestly just need the
+money to buy a new whip. Im looking for a pimped out subaru so i guess id also trade for that.
+', 'oro valley', $2000, 2);
+
+INSERT INTO posts (name, description, location, price, category_id)
+VALUES('Tesla Model X 2015', 'Bad ass whip. You pull up in this at any park all the
+middle class moms will go crazy. Trust me i pulled some milfs just from going through family car
+washes. Sadly im married now and have to part ways with my pussy wagon. The car is simply too
+pimpin for my new family. I would feel so inclined to cheat that I cant even look at this car anymore.
+Thats why I'm selling it for cheap. Full disclosure you will have to clean out the backseat. I had this one
+chick back there who pounded three fish bowls before we left the hut. i knew she was gonna be down for the count
+but when i saw her face when she saw those wing doors oooooo i knew i had to take her home. Needless to say she
+puked before we made it to speedway. Like a lot literally nonstop all the way home. She was tood drunk to tell me
+where she lived and i couldnt bring her into the house with my family so I let her sleep on the lawn and acted
+surprised in the morning when her limp body traumatized my daughter. She was blacked last night so she didnt
+recognize me so i took her home and we did the dirty and went about our business. That was on saturday so i have had
+no time to clean the car. But it is too tempting for me to even get in again so im selling.', '4th ave',
+'$4000', 3);
