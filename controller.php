@@ -46,6 +46,14 @@
         echo $frontPageStr;
     }
 
+    function getLoginStatus(){
+        if(isset($_SESSION['username'])){
+            return $_SESSION['username'];
+        }
+        else{
+            return null;
+        }
+    }
 
 $categories = array(
   "Jobs"=>0,
@@ -55,15 +63,19 @@ $categories = array(
   "Pets"=>4,
   "Electronics"=>5
 );
-$DB = new DatabaseAdaptor;
+
 if(isset($_POST['title'])){
   //needs code for user ID
-  $DB->createListing($categories[$_POST['category']], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price']);
+    $DB = new DatabaseAdaptor;
+    $DB->createListing($categories[$_POST['category']], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price']);
 }
 
 if(isset($_GET['request'])){
   if ($_GET['request'] == 'getCategories'){
     echo json_encode($DB->getAllCategories());
+  }
+  if ($_GET['request'] == 'loginInfo'){
+    echo getLoginStatus();
   }
 }
 
