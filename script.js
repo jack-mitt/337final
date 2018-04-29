@@ -16,27 +16,11 @@ function getTopBanner(){
     let userDiv = document.createElement('div');
     userDiv.className = 'dropdown';
     userDiv.id='userpanel';
-    let userIcon = document.createElement('img');
-    userIcon.className='dropbtn';
-    userIcon.id='usericon';
-    userIcon.src = 'images/usericon.png';
-    
+
     let accountLinkDiv = document.createElement('div');
     accountLinkDiv.className = 'dropdown-content';
-    
-    let accountLink = document.createElement('a');
-    
-    accountLink.innerHTML = 'Link1';
-    accountLink.href = '#';
-    
-    let logoutLink = document.createElement('a');
-    logoutLink.innerHTML = 'Link2';
-    logoutLink.href = '#';
-    
-    accountLinkDiv.appendChild(accountLink);
-    accountLinkDiv.appendChild(logoutLink);
+    accountLinkDiv.id = 'dropdowncontent';
         
-    userDiv.appendChild(userIcon);
     userDiv.appendChild(accountLinkDiv);
     
     topBanner.appendChild(logoImg);
@@ -45,9 +29,46 @@ function getTopBanner(){
     
     page.appendChild(topBanner);
     
-    getSessionInfo();
+    getLoginInfo();
 }
 
-function getSessionInfo(){
-    console.log("getting session info");
+function getLoginInfo(){
+    $.ajax({url: "controller.php?request=loginInfo", success: function(data){
+        let dropdownContent = document.getElementById('dropdowncontent');
+        dropdownContent.innerHTML = '';
+        if(data){
+            let accountLink = document.createElement('a');
+            accountLink.innerHTML = 'My Account';
+            accountLink.id = 'accountlink';
+            accountLink.href = 'account.php';
+            
+            let logoutLink = document.createElement('a');
+            logoutLink.innerHTML = 'My Account';
+            logoutLink.id = 'logoutlink';
+            logoutLink.href = 'account.php';
+            
+            dropdownContent.appendChild(accountLink);
+            dropdownContent.appendChild(logoutLink);
+        }
+        else{
+            let loginLink = document.createElement('a');
+            loginLink.innerHTML = 'Login';
+            loginLink.id = 'loginlink';
+            loginLink.href = 'login.php';
+
+            let registerLink = document.createElement('a');
+            registerLink.innerHTML = 'Register';
+            registerLink.id = 'registerlink';
+            registerLink.href = 'register.php';
+            
+            dropdownContent.appendChild(loginLink);
+            dropdownContent.appendChild(registerLink);
+        }
+    }});
 }
+$(document).ready(function(){
+     $("#usericon").hover(function(){
+        console.log("TEST");
+       $(this).src = 'images/usericonhover.png'; 
+    });   
+});
