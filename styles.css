@@ -205,3 +205,17 @@ a.subcategory{
 #addlistform{
   margin-top: 100px;
 }
+
+#searchHeader{
+  margin : 100px;
+
+}
+
+#searchbar{
+  width : 200%;
+  height : 20px;
+}
+
+#searchButton{
+  width : 70px;
+}
