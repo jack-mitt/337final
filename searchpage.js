@@ -57,8 +57,8 @@ function getSearchPage(){
     var search = document.getElementById('searchbar').value;
     var catagory = document.getElementById('catas');
     catagory = catagory.options[catagory.selectedIndex].value;
-      console.log(search);
-      console.log(catagory);
+      //console.log(search);
+      //console.log(catagory);
 
     //catagory = catagory.value;
     $.ajax({
@@ -75,8 +75,12 @@ function getSearchPage(){
         for (var i = 0; i < data.length; i++){
           var aux = document.createElement('div');
             aux.className = 'searchpost';
+            //TODO ADD LINK TO PAGE FOR A POST HERE. CALL JS FUNCTION THAT MAKES DIV
+            //VISIBLE AND ADDS STUFF TO IT
+          //var postLink = document.createElement('a');
+          //postLink.href = "javascript:createPostPage(document.getElementById(this.id))";
           aux.innerHTML += '<h5 class="searchposttitle">' + data[i]['postname'] + '<h5>';
-          aux.innerHTML += '<h5>' + data[i]['location'] +'</h5>' +  '<h5>' + data[i]['price'] + '</h5>';
+          aux.innerHTML += '<h5>' + data[i]['location'] +'</h5>' +  '<h5>$' + data[i]['price'] + '</h5>';
           content.appendChild(aux);
         }
       }
