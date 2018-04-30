@@ -64,7 +64,7 @@ function getPostPage(){
               //console.log(cDrop.name);
               var aux = document.createElement('option');
               aux.text = data[i]['name'];
-              aux.value = data[i]['name'];
+              aux.value = data[i]['id'];
               console.log(aux.value);
               cDrop.add(aux);
             }
@@ -85,7 +85,11 @@ function getPostPage(){
   page.appendChild(mainDiv);
   mainDiv.appendChild(heading);
   mainDiv.appendChild(mainForm);
+  mainForm.innerHTML += "<br><br>";
+  mainForm.innerHTML += "<br><br>";
+  
   mainForm.appendChild(cDrop);
+
   mainForm.innerHTML += "<br><br>";
   mainForm.innerHTML += 'Title: ';
   mainForm.innerHTML += '<br>';

@@ -86,7 +86,7 @@ body{
 }
 
 #userpanel:hover{
-    background: url(images/usericonhover.png);    
+    background: url(images/usericonhover.png);
     background-repeat: no-repeat;
     background-size: contain;
 }

@@ -70,13 +70,13 @@
         $DB = new DatabaseAdaptor();
         if($DB->loginUser($username, $password)){
             header('Location: index.php');
-        }   
+        }
         else{
             header('Location: loginError.php');
         }
         return;
     }
-    
+
     function logout(){
         if(isset($_SESSION['username'])){
             unset($_SESSION['username']);
@@ -92,7 +92,7 @@
         $DB = new DatabaseAdaptor();
         if($DB->registerUser($username, $password, $email)){
             header('Location: index.php');
-        }   
+        }
         else{
             header('Location: registerError.php');
         }
@@ -122,7 +122,7 @@ $categories = array(
 if(isset($_POST['title'])){
   //needs code for user ID
     $DB = new DatabaseAdaptor;
-    $DB->createListing($categories[$_POST['category']], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price']);
+    $DB->createListing($_POST['category'], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price']);
 }
 
 if(isset($_POST['action'])){
@@ -130,7 +130,7 @@ if(isset($_POST['action'])){
         login($_POST['username'], $_POST['password']);
     }
     if($_POST['action'] == 'register'){
-        register($_POST['username'], $_POST['password'], $_POST['email']);        
+        register($_POST['username'], $_POST['password'], $_POST['email']);
     }
 }
 
