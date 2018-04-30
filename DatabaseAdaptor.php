@@ -32,31 +32,44 @@ class DatabaseAdaptor {
     }
 
     public function getPostsByCategory($categoryId){
-        $stmt = $this->DB->prepare("SELECT posts.id, posts.name, posts.price, categories.name FROM posts JOIN categories WHERE posts.category_id='" .$categoryId ."'");
+        $stmt = $this->DB->prepare("SELECT posts.id, posts.location, posts.postname, posts.price, categories.name FROM posts JOIN categories WHERE posts.category_id='" .$categoryId ."'");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function getPostsByCategoryName($categoryName){
+        $stmt = $this->DB->prepare("SELECT posts.id, posts.postname, posts.location, posts.price, categories.name FROM posts JOIN categories WHERE posts.category_id=categories.id AND categories.name='" .$categoryName ."'");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);        
+    }
 
     public function getPostsByUser($userId){
-        $stmt = $this->DB->prepare("SELECT posts.id, posts.name, posts.price, posts.location, users.username FROM posts JOIN users WHERE posts.user_id='" .$userId ."'");
+        $stmt = $this->DB->prepare("SELECT posts.id, posts.postname, posts.price, posts.location, users.username FROM posts JOIN users WHERE posts.user_id='" .$userId ."'");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function createListing($categoryID, $title, $desc, $location, $price){
-      //needs code for user ID
+      //needs code for user ID  
+      if(isset($_SESSION['user_id'])){
+        $stmt = $this->DB->prepare("INSERT INTO posts (postname, description, location, price, category_id, user_id)
+       VALUES ('" . $title . "', '" . $desc . "', '" . $location . "', '" . $price . "', '" . $categoryID . "','". $_SESSION['user_id'] . "')");          
+      }
+      else{
       $stmt = $this->DB->prepare("INSERT INTO posts (name, description, location, price, category_id)
        VALUES ('" . $title . "', '" . $desc . "', '" . $location . "', '" . $price . "', '" . $categoryID . "')");
+      }
       $stmt->execute();
       header('Location: index.php');
+        return;
     }
 
     public function findSearch($search, $catagory_id){
       //echo 'here';
       if($catagory_id > 0){
-        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE posts.name LIKE '%" . $search . "%' AND  posts.category_id='" . $catagory_id . "'");
+        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE postname LIKE '%" . $search . "%' AND  category_id='" . $catagory_id . "'");
       } else{
-        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE posts.name LIKE '%" . $search . "%'");
+        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE postname LIKE '%" . $search . "%'");
       }
       //AND posts.category_id = " . $category_id);
       $stmt->execute();

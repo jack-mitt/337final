@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id='pagecontainer'>
-
+    
     </div>
     <script>
     getTopBanner();

@@ -6,7 +6,9 @@
     include('DatabaseAdaptor.php');
 
     function getSideBar(){
+        
         $sidebarStr = "<h3 class='sidebarheader'>CATEGORIES</h3>";
+
         $DB = new DatabaseAdaptor();
         $allCategories = $DB->getAllCategories();
         $categoryCount = count($allCategories);
@@ -50,13 +52,34 @@
         echo $frontPageStr;
     }
 
+    function getBrowsePage($category){
+         $browsePageStr = "<h2 class='frontpageheader'>" .strtoupper($category). "</h2>"; 
+        $DB = new DatabaseAdaptor();
+        if($category == "ALL CATEGORIES"){
+            $posts = $DB->getAllPosts();
+        }
+        else{
+            $posts = $DB->getPostsByCategoryName($category);
+        }
+        foreach($posts as $post){
+            $browsePageStr .= "<div class='searchpost' id='" .$post['id']. "' onclick='showPost(this.id)'>";
+            $browsePageStr .= "<h5 class='searchposttitle'>" .$post['postname'] . "</h5>";
+            $browsePageStr .= "<h5 class='searchpostlocation'>" .$post['location'] . "</h5>";
+            $browsePageStr .= "<h5 class='searchpostprice'>$" .$post['price'] . "</h5></div>";
+        }
+        echo $browsePageStr;
+    }
+
     function getUserInfo(){
         if(isset($_SESSION['username']) && isset($_SESSION['user_id'])){
             $DB = new DatabaseAdaptor();
             $userInfoStr = '<div class="userinfodiv"><h3 class="frontpageheader">' . $_SESSION['username'] . " - POSTS</h3><hr>" ;
             $userPosts = $DB->getPostsByUser($_SESSION['user_id']);
             foreach($userPosts as $post){
-                $userInfoStr .= '<div class="post">' . $post['name'] . '<br>' . $post['location'] . '<br>$' . $post['price'] . '</div>';
+                $userInfoStr .= "<div class='searchpost' id='" .$post['id']. "' onclick='showPost(this.id)'>";
+                $userInfoStr .= "<h5 class='searchposttitle'>" .$post['postname'] . "</h5>";
+                $userInfoStr .= "<h5 class='searchpostlocation'>" .$post['location'] . "</h5>";
+                $userInfoStr .= "<h5 class='searchpostprice'>$" .$post['price'] . "</h5></div>";
             }
             $userInfoStr .= '</div>';
             return $userInfoStr;
@@ -108,17 +131,6 @@
         }
     }
 
-
-
-$categories = array(
-  "Jobs"=>0,
-  "Services"=>1,
-  "Cars"=>2,
-  "School Supplies"=>3,
-  "Pets"=>4,
-  "Electronics"=>5
-);
-
 if(isset($_POST['title'])){
   //needs code for user ID
     $DB = new DatabaseAdaptor;
@@ -147,8 +159,7 @@ if(isset($_GET['request'])){
   }
 }
 
-if(isset($_GET['search'])){
-  //echo $_GET['search'];
+if(isset($_GET['search'])){ 
   $DB = new DatabaseAdaptor;
   echo json_encode($DB->findSearch($_GET['search'], $_GET['catagory']));
 }

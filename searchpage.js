@@ -21,6 +21,7 @@ function getSearchPage(){
   populateCategories();
   var allOption = document.createElement('option');
   allOption.text = 'All';
+  allOption.value = '0';
   cDrop.add(allOption);
   function populateCategories(){
 
@@ -56,6 +57,8 @@ function getSearchPage(){
     var search = document.getElementById('searchbar').value;
     var catagory = document.getElementById('catas');
     catagory = catagory.options[catagory.selectedIndex].value;
+      console.log(search);
+      console.log(catagory);
 
     //catagory = catagory.value;
     $.ajax({
@@ -66,14 +69,14 @@ function getSearchPage(){
         //show listing names and prices
         var content = document.getElementById('postDiv');
         content.innerHTML = "";
+        console.log(data);
         data = JSON.parse(data);
-        //console.log(data);
+        console.log(data);
         for (var i = 0; i < data.length; i++){
           var aux = document.createElement('div');
-          aux.innerHTML += '<hr>';
-          aux.innerHTML += data[i]['name'];
-          aux.innerHTML += '<br><br>';
-          aux.innerHTML += data[i]['location'] + '              ' + data[i]['price'];
+            aux.className = 'searchpost';
+          aux.innerHTML += '<h5 class="searchposttitle">' + data[i]['postname'] + '<h5>';
+          aux.innerHTML += '<h5>' + data[i]['location'] +'</h5>' +  '<h5>' + data[i]['price'] + '</h5>';
           content.appendChild(aux);
         }
       }

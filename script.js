@@ -14,6 +14,16 @@ function getTopBanner(){
     titleDiv.innerHTML='UA SWAP';
     titleDiv.onclick=function(){window.location.href = 'index.php'};
     
+    let postDiv = document.createElement('div');
+    postDiv.className = 'postlinkdiv';
+    postDiv.innerHTML = "CREATE A LISTING";
+    postDiv.onclick = function(){window.location.href = 'postPage.php'};
+    
+    let searchDiv = document.createElement('div');
+    searchDiv.className = 'searchlinkdiv';
+    searchDiv.innerHTML = "SEARCH LISTINGS";
+    searchDiv.onclick = function(){window.location.href = 'searchPage.php'};    
+    
     let userDiv = document.createElement('div');
     userDiv.className = 'dropdown';
     userDiv.id='userpanel';
@@ -27,6 +37,8 @@ function getTopBanner(){
     topBanner.appendChild(logoImg);
     topBanner.appendChild(titleDiv);
     topBanner.appendChild(userDiv);
+    topBanner.appendChild(postDiv);
+    topBanner.appendChild(searchDiv);
     
     page.appendChild(topBanner);
     
