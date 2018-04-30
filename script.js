@@ -12,6 +12,7 @@ function getTopBanner(){
     var titleDiv = document.createElement('div');
     titleDiv.className='topbannertitle';
     titleDiv.innerHTML='UA SWAP';
+    titleDiv.onclick=function(){window.location.href = 'index.php'};
     
     let userDiv = document.createElement('div');
     userDiv.className = 'dropdown';
@@ -36,6 +37,7 @@ function getLoginInfo(){
     $.ajax({url: "controller.php?request=loginInfo", success: function(data){
         let dropdownContent = document.getElementById('dropdowncontent');
         dropdownContent.innerHTML = '';
+        console.log(data);
         if(data){
             let accountLink = document.createElement('a');
             accountLink.innerHTML = 'My Account';
@@ -43,9 +45,9 @@ function getLoginInfo(){
             accountLink.href = 'account.php';
             
             let logoutLink = document.createElement('a');
-            logoutLink.innerHTML = 'My Account';
+            logoutLink.innerHTML = 'Logout';
             logoutLink.id = 'logoutlink';
-            logoutLink.href = 'account.php';
+            logoutLink.href = 'controller.php?request=logout';
             
             dropdownContent.appendChild(accountLink);
             dropdownContent.appendChild(logoutLink);
@@ -66,9 +68,3 @@ function getLoginInfo(){
         }
     }});
 }
-$(document).ready(function(){
-     $("#usericon").hover(function(){
-        console.log("TEST");
-       $(this).src = 'images/usericonhover.png'; 
-    });   
-});

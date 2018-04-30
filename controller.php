@@ -1,4 +1,8 @@
 <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     include('DatabaseAdaptor.php');
 
     function getSideBar(){
@@ -46,6 +50,54 @@
         echo $frontPageStr;
     }
 
+    function getUserInfo(){
+        if(isset($_SESSION['username']) && isset($_SESSION['user_id'])){
+            $DB = new DatabaseAdaptor();
+            $userInfoStr = '<h3 class="frontpageheader">' . $_SESSION['username'] . "</h3>" ;
+            $userPosts = $DB->getPostsByUser($_SESSION['user_id']);
+            foreach($userPosts as $post){
+                $userInfoStr .= '<div class="post">' . $post['name'] . '<br>' . $post['location'] . '<br>$' . $post['price'] . '</div>';
+            }
+            return $userInfoStr;
+        }
+        else{
+            return 'error getting user info';
+        }
+    }
+
+    function login($username, $password){
+        $DB = new DatabaseAdaptor();
+        if($DB->loginUser($username, $password)){
+            header('Location: index.php');
+        }   
+        else{
+            header('Location: loginError.php');
+        }
+        return;
+    }
+    
+    function logout(){
+        if(isset($_SESSION['username'])){
+            unset($_SESSION['username']);
+            header('Location: index.php');
+        }
+        else{
+            header('Location: index.php');
+        }
+        return;
+    }
+
+    function register($username, $password, $email){
+        $DB = new DatabaseAdaptor();
+        if($DB->registerUser($username, $password, $email)){
+            header('Location: index.php');
+        }   
+        else{
+            header('Location: registerError.php');
+        }
+        return;
+    }
+
     function getLoginStatus(){
         if(isset($_SESSION['username'])){
             return $_SESSION['username'];
@@ -54,6 +106,8 @@
             return null;
         }
     }
+
+
 
 $categories = array(
   "Jobs"=>0,
@@ -70,17 +124,31 @@ if(isset($_POST['title'])){
     $DB->createListing($categories[$_POST['category']], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price']);
 }
 
+if(isset($_POST['action'])){
+    if($_POST['action'] == 'login'){
+        login($_POST['username'], $_POST['password']);
+    }
+    if($_POST['action'] == 'register'){
+        register($_POST['username'], $_POST['password'], $_POST['email']);        
+    }
+}
+
 if(isset($_GET['request'])){
   if ($_GET['request'] == 'getCategories'){
+    $DB = new DatabaseAdaptor;
     echo json_encode($DB->getAllCategories());
   }
   if ($_GET['request'] == 'loginInfo'){
     echo getLoginStatus();
   }
+  if($_GET['request'] == 'logout'){
+        logout();
+  }
 }
 
 if(isset($_GET['search'])){
   //echo $_GET['search'];
+  $DB = new DatabaseAdaptor;
   echo json_encode($DB->findSearch($_GET['search'], $_GET['catagory']));
 }
 ?>

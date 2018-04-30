@@ -58,7 +58,7 @@ function getPostPage(){
           cache: false,
           success: function(data, status) {
             var cDrop = document.getElementById('catas');
-            //console.log(data);
+            console.log(data);
             data = JSON.parse(data);
             for (var i = 0; i < data.length; i++){
               //console.log(cDrop.name);

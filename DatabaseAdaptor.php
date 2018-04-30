@@ -32,7 +32,13 @@ class DatabaseAdaptor {
     }
 
     public function getPostsByCategory($categoryId){
-        $stmt = $this->DB->prepare("SELECT posts.name, posts.price FROM posts JOIN categories WHERE category_id='" .$categoryId ."'");
+        $stmt = $this->DB->prepare("SELECT posts.id, posts.name, posts.price, categories.name FROM posts JOIN categories WHERE posts.category_id='" .$categoryId ."'");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getPostsByUser($userId){
+        $stmt = $this->DB->prepare("SELECT posts.id, posts.name, posts.price, posts.location, users.username FROM posts JOIN users WHERE posts.user_id='" .$userId ."'");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -52,8 +58,42 @@ class DatabaseAdaptor {
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
+    
+    public function registerUser($username, $password, $email){
+        $username = htmlspecialchars($username);
+        $password = htmlspecialchars($password);
+        $email = htmlspecialchars($email);
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $this->DB->prepare("INSERT INTO users (username, hash, email) values (:username, :hash, :email)");
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':hash', $hash);
+        $stmt->bindParam(':email', $email);
+        return $stmt->execute();
+    }
+    
+    public function loginUser($username, $password){
+        $username = htmlspecialchars($username);
+        $password = htmlspecialchars($password);
+        
+        $stmt = $this->DB->prepare("SELECT * FROM users;");
+        if($stmt->execute()){
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach($users as $user){
+                if($user['username'] == $username){
+                    if(password_verify($password, $user['hash'])){
+                        $_SESSION['username'] = $username;
+                        $_SESSION['user_id'] = $user['id'];
+                        return 1;
+                    }
+                }
+            }
+            return 0;
+        }
+        else{
+            echo "error getting info from users table";
+            return 0;
+        } 
+    }
 } // End class DatabaseAdaptor
 
 ?>
