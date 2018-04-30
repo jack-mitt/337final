@@ -19,7 +19,9 @@ function getSearchPage(){
   cDrop.id = 'catas';
   cDrop.className = 'dropandsearch';
   populateCategories();
-
+  var allOption = document.createElement('option');
+  allOption.text = 'All';
+  cDrop.add(allOption);
   function populateCategories(){
 
     $.ajax({
@@ -54,6 +56,7 @@ function getSearchPage(){
     var search = document.getElementById('searchbar').value;
     var catagory = document.getElementById('catas');
     catagory = catagory.options[catagory.selectedIndex].value;
+
     //catagory = catagory.value;
     $.ajax({
       url : 'controller.php?search='+ search + '&catagory=' + catagory,
@@ -62,8 +65,9 @@ function getSearchPage(){
       success: function(data, status){
         //show listing names and prices
         var content = document.getElementById('postDiv');
+        content.innerHTML = "";
         data = JSON.parse(data);
-        console.log(data);
+        //console.log(data);
         for (var i = 0; i < data.length; i++){
           var aux = document.createElement('div');
           aux.innerHTML += '<hr>';

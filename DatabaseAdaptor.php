@@ -36,7 +36,7 @@ class DatabaseAdaptor {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getPostsByUser($userId){
         $stmt = $this->DB->prepare("SELECT posts.id, posts.name, posts.price, posts.location, users.username FROM posts JOIN users WHERE posts.user_id='" .$userId ."'");
         $stmt->execute();
@@ -53,12 +53,16 @@ class DatabaseAdaptor {
 
     public function findSearch($search, $catagory_id){
       //echo 'here';
-      $stmt = $this->DB->prepare("SELECT * FROM posts WHERE posts.name LIKE '%" . $search . "%'");
+      if($catagory_id > 0){
+        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE posts.name LIKE '%" . $search . "%' AND  posts.category_id='" . $catagory_id . "'");
+      } else{
+        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE posts.name LIKE '%" . $search . "%'");
+      }
       //AND posts.category_id = " . $category_id);
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function registerUser($username, $password, $email){
         $username = htmlspecialchars($username);
         $password = htmlspecialchars($password);
@@ -70,11 +74,11 @@ class DatabaseAdaptor {
         $stmt->bindParam(':email', $email);
         return $stmt->execute();
     }
-    
+
     public function loginUser($username, $password){
         $username = htmlspecialchars($username);
         $password = htmlspecialchars($password);
-        
+
         $stmt = $this->DB->prepare("SELECT * FROM users;");
         if($stmt->execute()){
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -92,7 +96,7 @@ class DatabaseAdaptor {
         else{
             echo "error getting info from users table";
             return 0;
-        } 
+        }
     }
 } // End class DatabaseAdaptor
 
