@@ -53,11 +53,12 @@
     function getUserInfo(){
         if(isset($_SESSION['username']) && isset($_SESSION['user_id'])){
             $DB = new DatabaseAdaptor();
-            $userInfoStr = '<h3 class="frontpageheader">' . $_SESSION['username'] . "</h3>" ;
+            $userInfoStr = '<div class="userinfodiv"><h3 class="frontpageheader">' . $_SESSION['username'] . " - POSTS</h3><hr>" ;
             $userPosts = $DB->getPostsByUser($_SESSION['user_id']);
             foreach($userPosts as $post){
                 $userInfoStr .= '<div class="post">' . $post['name'] . '<br>' . $post['location'] . '<br>$' . $post['price'] . '</div>';
             }
+            $userInfoStr .= '</div>';
             return $userInfoStr;
         }
         else{
