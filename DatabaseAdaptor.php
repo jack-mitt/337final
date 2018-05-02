@@ -73,16 +73,18 @@ class DatabaseAdaptor {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function createListing($categoryID, $title, $desc, $location, $price){
-        $categoryId = htmlspecialchars($categoryId);
+    public function createListing($categoryID, $title, $desc, $location, $price, $email){
+        $categoryID = htmlspecialchars($categoryID);
         $title = htmlspecialchars($title);
         $desc = htmlspecialchars($desc);
         $location = htmlspecialchars($location);
         $price = htmlspecialchars($price);
+        $email = htmlspecialchars($email);
       //needs code for user ID  
       if(isset($_SESSION['user_id'])){
-        $stmt = $this->DB->prepare("INSERT INTO posts (postname, description, location, price, category_id, user_id)
-       VALUES (:title, :desc, :location, :price, :categoryID , :userId)");  
+        $stmt = $this->DB->prepare("INSERT INTO posts (postname, description, location, price, category_id, user_id, email)
+       VALUES (:title, :desc, :location, :price, :categoryID , :userId, :email)");
+          $stmt->bindParam(':email', $email);
           $stmt->bindParam(':title', $title);
           $stmt->bindParam(':desc', $desc);
           $stmt->bindParam(':location', $location);
@@ -91,8 +93,9 @@ class DatabaseAdaptor {
           $stmt->bindParam(':userId', $_SESSION['user_id']);
       }
       else{
-      $stmt = $this->DB->prepare("INSERT INTO posts (name, description, location, price, category_id)
-       VALUES (:title, :desc, :location, :price, :categoryID)");
+      $stmt = $this->DB->prepare("INSERT INTO posts (name, description, location, price, category_id, email)
+       VALUES (:title, :desc, :location, :price, :categoryID, :email)");
+          $stmt->bindParam(':email', $email);
           $stmt->bindParam(':title', $title);
           $stmt->bindParam(':desc', $desc);
           $stmt->bindParam(':location', $location);
@@ -101,7 +104,7 @@ class DatabaseAdaptor {
       }
       $stmt->execute();
 
-      //header('Location: index.php');
+        header('Location: index.php');
         return;
     }
 

@@ -136,7 +136,7 @@
 if(isset($_POST['title'])){
   //needs code for user ID
     $DB = new DatabaseAdaptor;
-    $DB->createListing($_POST['category'], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price']);
+    $DB->createListing($_POST['category'], $_POST['title'], $_POST['desc'], $_POST['location'], $_POST['price'], $_POST['email']);
     $postId = $DB->getPostCount();
         $target_file = "./images/posts/" . basename($_FILES["image"]["name"]);
         $uploadOk = 1;

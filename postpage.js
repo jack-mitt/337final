@@ -13,18 +13,21 @@ function getPostPage(){
 
   var postTitle = document.createElement('input');
   postTitle.id = 'post_title';
+  postTitle.required = 'true';
   postTitle.className = 'inputfield';
   postTitle.name = 'title';
 
   var postDesc = document.createElement('textarea');
   postDesc.className = 'inputfield';
+  postDesc.required = 'true';
   postDesc.rows = '8';
   postDesc.cols = '100';
   postDesc.name = 'desc';
 
   var addImageButton = document.createElement('input');
   addImageButton.type='file';
-  addImageButton.name='image';
+  addImageButton.name='image'
+  addImageButton.required = 'true';
   addImageButton.className = 'defbutton';
   addImageButton.innerHTML = 'Add Image';
 
@@ -33,8 +36,6 @@ function getPostPage(){
   submitButton.name = "submit";
   submitButton.className = 'defbutton';
   submitButton.type = "submit";
-
-  //CODE FOR IMAGE NEEDS TO BE ADDED
 
   var imgNameDiv = document.createElement('div');
   imgName = imgNameDiv.innerHTML;
@@ -77,12 +78,22 @@ function getPostPage(){
   var location = document.createElement('input');
   location.className = 'inputfield';
   location.name = 'location';
+  location.required = 'true';
   location.id = 'location';
 
   var price = document.createElement('input');
   price.type = 'number';
   price.id = 'price';
+  price.required = 'true';
   price.name = 'price';
+    
+  var emailInput = document.createElement('input');
+  emailInput.type = 'text';
+  emailInput.id = 'email';
+  emailInput.requred = 'true';
+  emailInput.name = 'email';
+  emailInput.pattern = ".+\@.+\..+";
+  emailInput.title = 'Please enter a valid email address';
 
 
   page.appendChild(mainDiv);
@@ -110,6 +121,12 @@ function getPostPage(){
   mainForm.innerHTML += '<br>';
   mainForm.appendChild(postDesc);
   mainForm.innerHTML += '<br><br>';
+  mainForm.innerHTML += "Contact Email: ";
+  mainForm.innerHTML += '<br>';
+  mainForm.appendChild(emailInput);
+  mainForm.innerHTML += '<br><br>';
+  mainForm.innerHTML += "Image: (must be jpg, less than 3MB) ";
+  mainForm.innerHTML += '<br>';    
   mainForm.appendChild(addImageButton);
   mainForm.innerHTML += '<br>';
   mainForm.appendChild(submitButton);
