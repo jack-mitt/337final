@@ -62,7 +62,7 @@ body{
     width: 100%;
     height: 150px;
     background-color: whitesmoke;
-    z-index: 1;
+    z-index: 3;
 }
 
 .sidebar{
@@ -378,4 +378,44 @@ img.searchpostthumbnail{
     object-fit: cover;
 }
 
+.postpage{
+  position : fixed;
+  top:150px;
+  right : 0px;
+  left : 0px;
+  bottom : 0px;
+  background-color : white;
 
+
+}
+.postobjtitle{
+  margin-left:50px;
+  position : absolute;
+
+}
+.postimage{
+  margin-left:50px;
+  height:200px;
+  width:200px;
+  position : absolute;
+  top : 100px;
+  margin-right:50px;
+}
+
+.postInfo {
+  position: absolute;
+  top : 100px;
+  left: 350px;
+  float : right;
+  margin-left:20px;
+}
+
+.xButton{
+  position : absolute;
+  float : right;
+  height : 25px;
+  width : 25px;
+  right : 25px;
+  top: 50px;
+  cursor : pointer;
+}

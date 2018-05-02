@@ -3,7 +3,7 @@ Elan:
 [X] account registration / login
 [X] side bar
 [] adding an image
-[] bind param
+[] bind param 
 
 Jack:
 [x] posting a post
