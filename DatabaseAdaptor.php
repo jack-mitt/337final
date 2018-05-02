@@ -50,10 +50,10 @@ class DatabaseAdaptor {
     }
     
     public function getPostsByCategoryName($categoryName){
-        $categoryName = htmlspecialchars($categoryId);
+        $categoryName = htmlspecialchars($categoryName);
         $stmt = $this->DB->prepare("SELECT posts.id, posts.postname, posts.location, posts.price, categories.name FROM posts JOIN categories WHERE posts.category_id=categories.id AND categories.name=:categoryName");
-        $stmt->execute();
         $stmt->bindParam(':categoryName', $categoryName);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);        
     }
 
@@ -103,11 +103,11 @@ class DatabaseAdaptor {
         
       //echo 'here';
       if($catagory_id > 0){
-        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE postname LIKE '%:search%' AND  category_id=:catagory_id");
+        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE postname LIKE CONCAT('%', :search, '%') AND category_id=:catagory_id");
           $stmt->bindParam(':search', $search);
           $stmt->bindParam(':catagory_id', $catagory_id);
       } else{
-        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE postname LIKE '%:search%'");
+        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE postname LIKE CONCAT('%', :search, '%')");
           $stmt->bindParam(':search', $search);
       }
       //AND posts.category_id = " . $category_id);
