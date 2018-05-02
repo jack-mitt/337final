@@ -49,6 +49,14 @@ class DatabaseAdaptor {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function getPostById($postId){
+        $postId = htmlspecialchars($postId);
+        $stmt = $this->DB->prepare("SELECT * FROM posts WHERE id=:postId");            
+        $stmt->bindParam(":postId", $postId);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
     public function getPostsByCategoryName($categoryName){
         $categoryName = htmlspecialchars($categoryName);
         $stmt = $this->DB->prepare("SELECT posts.id, posts.postname, posts.location, posts.price, categories.name FROM posts JOIN categories WHERE posts.category_id=categories.id AND categories.name=:categoryName");
