@@ -22,13 +22,15 @@ function getPostPage(){
   postDesc.cols = '100';
   postDesc.name = 'desc';
 
-  var addImageButton = document.createElement('button');
-  addImageButton.value = 'Add Imamge';
+  var addImageButton = document.createElement('input');
+  addImageButton.type='file';
+  addImageButton.name='image';
   addImageButton.className = 'defbutton';
   addImageButton.innerHTML = 'Add Image';
 
   var submitButton = document.createElement('input');
   submitButton.value = 'Create';
+  submitButton.name = "submit";
   submitButton.className = 'defbutton';
   submitButton.type = "submit";
 
@@ -41,6 +43,7 @@ function getPostPage(){
   mainForm.action = "controller.php";
   mainForm.method = "POST";
   mainForm.id = 'addlistform';
+  mainForm.enctype = 'multipart/form-data';
 
   var cDrop = document.createElement('select');
   cDrop.name = 'category';

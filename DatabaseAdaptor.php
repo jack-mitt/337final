@@ -19,6 +19,14 @@ class DatabaseAdaptor {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function getPostCount(){
+        $stmt = $this->DB->prepare("SELECT * FROM posts");
+        $stmt->execute();
+        $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return count($posts);
+    }
+    
     public function getChildrenOf($categoryId){
         $stmt = $this->DB->prepare("SELECT * FROM categories where parent_id=" . $categoryId);
         $stmt->execute();
@@ -60,7 +68,8 @@ class DatabaseAdaptor {
        VALUES ('" . $title . "', '" . $desc . "', '" . $location . "', '" . $price . "', '" . $categoryID . "')");
       }
       $stmt->execute();
-      header('Location: index.php');
+
+      //header('Location: index.php');
         return;
     }
 
