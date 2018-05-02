@@ -81,6 +81,7 @@ function getSearchPage(){
           //postLink.href = "javascript:createPostPage(document.getElementById(this.id))";
           aux.innerHTML += '<h5 class="searchposttitle">' + data[i]['postname'] + '<h5>';
           aux.innerHTML += '<h5>' + data[i]['location'] +'</h5>' +  '<h5>$' + data[i]['price'] + '</h5>';
+          aux.innerHTML += "<div class='searchpostthumbnaildiv'><img class='searchpostthumbnail' alt='"+data[i]['name']+"' src='images/posts/" + data[i]['id'] + ".jpg'></div>";
           content.appendChild(aux);
         }
       }

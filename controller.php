@@ -65,7 +65,8 @@
             $browsePageStr .= "<div class='searchpost' id='" .$post['id']. "' onclick='showPost(this.id)'>";
             $browsePageStr .= "<h5 class='searchposttitle'>" .$post['postname'] . "</h5>";
             $browsePageStr .= "<h5 class='searchpostlocation'>" .$post['location'] . "</h5>";
-            $browsePageStr .= "<h5 class='searchpostprice'>$" .$post['price'] . "</h5></div>";
+            $browsePageStr .= "<h5 class='searchpostprice'>$" .$post['price'] . "</h5>";
+            $browsePageStr .= "<div class='searchpostthumbnaildiv'><img class='searchpostthumbnail' alt='".$post['name']."' src='images/posts/" . $post['id'] . ".jpg'></div></div>";
         }
         echo $browsePageStr;
     }
@@ -79,7 +80,8 @@
                 $userInfoStr .= "<div class='searchpost' id='" .$post['id']. "' onclick='showPost(this.id)'>";
                 $userInfoStr .= "<h5 class='searchposttitle'>" .$post['postname'] . "</h5>";
                 $userInfoStr .= "<h5 class='searchpostlocation'>" .$post['location'] . "</h5>";
-                $userInfoStr .= "<h5 class='searchpostprice'>$" .$post['price'] . "</h5></div>";
+                $userInfoStr .= "<h5 class='searchpostprice'>$" .$post['price'] . "</h5>";
+                $userInfoStr .= "<div class='searchpostthumbnaildiv'><img class='searchpostthumbnail' alt='".$post['name']."' src='images/posts/" . $post['id'] . ".jpg'></div></div>";
             }
             $userInfoStr .= '</div>';
             return $userInfoStr;

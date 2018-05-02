@@ -312,7 +312,7 @@ a.subcategory:hover{
 div.userinfodiv{
     position: fixed;
     top: 150px;
-    right: 0px;
+    right: 5px;
     left: 0px;
     bottom: 0px;
     padding: 20px;
@@ -365,6 +365,17 @@ h5.searchposttitle{
 
 h5.searchposttitle:hover{
     color:red;
+}
+
+div.searchpostthumbnaildiv{
+    position: absolute;
+    display: flex;
+    right: 30px;
+}
+
+img.searchpostthumbnail{
+    height: 130px;
+    object-fit: cover;
 }
 
 
